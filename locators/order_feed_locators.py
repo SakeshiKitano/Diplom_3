@@ -4,6 +4,8 @@ class FeedPageLocators:
     # ==== Хедер ====
     HEADER_FEED_LINK = (By.XPATH, "//p[normalize-space()='Лента Заказов']")  # Кнопка "Лента заказов" в верхнем меню
 
+    FEED_TITLE = (By.XPATH, "//h1[normalize-space()='Лента заказов']") # Заголовок лента заказов
+
     # ==== Счетчики ====
     COUNTER_TOTAL_LABEL = (By.XPATH, "//p[normalize-space()='Выполнено за все время:']")  # Лейбл "Выполнено за все время"
     COUNTER_TODAY_LABEL = (By.XPATH, "//p[normalize-space()='Выполнено за сегодня:']")  # Лейбл "Выполнено за сегодня"
