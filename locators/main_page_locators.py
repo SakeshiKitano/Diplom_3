@@ -7,11 +7,9 @@ class MainPageLocators:
 
     # ==== Ингредиенты ====
     INGREDIENT_CARD_BY_NAME = lambda name: (
-        By.XPATH,
-        f"//p[contains(@class,'text_type_main-default') and normalize-space()='{name}']"
-        f"/ancestor::a | "
-        f"//p[normalize-space()='{name}']/ancestor::*[self::a or self::div][contains(@class,'ingredient')]"
-    ) # Карточка ингредиента по имени (например: "Флюоресцентная булка R2-D3")
+    By.XPATH,
+    f"//p[normalize-space()='{name}']/ancestor::a[contains(@class,'BurgerIngredient_ingredient')]"
+) # Карточка ингредиента по имени (например: "Флюоресцентная булка R2-D3")
 
     INGREDIENT_COUNTER_BY_NAME = lambda name: (
         By.XPATH,
@@ -20,7 +18,7 @@ class MainPageLocators:
     ) # Счетчик количества для ингредиента (появляется при добавлении в заказ)
 
     # ==== Зона конструктора ====
-    CONSTRUCTOR_DROP_AREA = (By.CSS_SELECTOR, "section[class*='BurgerConstructor_constructor']")
+    CONSTRUCTOR_DROP_AREA = (By.XPATH, "//img[@alt='Перетяните булочку сюда (верх)']")
     # Область, куда перетаскиваются ингредиенты для сборки бургера
 
     # ==== Табы категорий ====
