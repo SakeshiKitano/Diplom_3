@@ -21,7 +21,7 @@ class MainPage(BasePage):
 
     @allure.step("Нажать на 'Лента заказов' в хедере")
     def go_to_feed(self):
-        self.click_on_element(H.FEED_BTN)
+        self.click_with_js(H.FEED_BTN)
 
     @allure.step("Скролл до элемента из конструктора")
     def scroll_to_ingredient(self, name):
@@ -82,6 +82,33 @@ class MainPage(BasePage):
     def get_text_modal_tittle(self):
         self.wait_for_element(M.MODAL_TITLE)
         return self.get_text_on_element(M.MODAL_TITLE)
+
+    @allure.step("Нажать на кнопку Заказать")
+    def click_place_an_order(self):
+        self.click_on_element(L.PLACE_AN_ORDER)
+
+    @allure.step("Дождаться и получить Id заказа")
+    def get_order_id_from_details(self):
+        self.find_and_wait_until_text_changes(M.ORDER_ID, "9999")
+        return self.get_text_on_element(M.ORDER_ID)
+
+    @allure.step("Закрыть окно с деталями заказа")
+    def click_close_order_details(self):
+        self.wait_for_element(M.CLOSE_ORDER_DETAILS_BUTTON)
+        self.click_on_element(M.CLOSE_ORDER_DETAILS_BUTTON)
+
+    @allure.step("Получить текст заголовка окна деталей заказа")
+    def get_text_order_tittle(self):
+        self.wait_for_element(M.ORDER_TITLE)
+        return self.get_text_on_element(M.ORDER_TITLE)
+
+    @allure.step("Дождаться закрытия оверлея Id заказа")
+    def get_invisiblity_id_order_overlay(self):
+        self.wait_for_no_element(M.ORDER_ID_OVERLAY_LOCATOR)
+
+    @allure.step("Получить текст заголовка окна деталей заказа")
+    def get_click_id_order_overlay(self):
+        self.click_on_element(M.ORDER_ID_OVERLAY_LOCATOR)
 
 
 

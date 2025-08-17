@@ -26,4 +26,8 @@ class MainPageLocators:
     TAB_SAUCES = (By.XPATH, "//span[normalize-space()='Соусы']/parent::div[contains(@class,'tab')]") # Вкладка "Соусы"
     TAB_FILLINGS = (By.XPATH, "//span[normalize-space()='Начинки']/parent::div[contains(@class,'tab')]") # Вкладка "Начинки"
 
+    PLACE_AN_ORDER = (By.XPATH,
+                      "//button[@class='button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg']")
+    #Кнопка заказать
+
 

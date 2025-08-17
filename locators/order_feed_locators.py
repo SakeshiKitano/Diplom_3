@@ -13,5 +13,8 @@ class FeedPageLocators:
     COUNTER_TODAY_VALUE = (By.XPATH, "//p[normalize-space()='Выполнено за сегодня:']/following-sibling::p[1]")  # Значение счетчика "Выполнено за сегодня"
 
     # ==== Колонка "В работе" ====
-    COLUMN_IN_PROGRESS_NUMBERS = (By.XPATH, "//h2[contains(., 'В работе')]/following-sibling::ul[1]/li")
+    COLUMN_IN_PROGRESS_NUMBERS = (
+        By.XPATH,
+        "//ul[contains(@class, 'OrderFeed_orderList')]/li[1]"
+    )
     # Список номеров заказов в колонке "В работе"

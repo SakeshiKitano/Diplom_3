@@ -8,8 +8,8 @@ from pages.feed_page import FeedPage
 from data import *
 
 
-@allure.feature("Навигация")
-@allure.story("Переход из 'Ленты заказов' обратно на 'Конструктор'")
+
+@allure.title("Переход из 'Ленты заказов' обратно на 'Конструктор'")
 def test_navigation_feed_to_constructor(driver):
     page = MainPage(driver)
     with allure.step("Перейти в 'Ленту заказов'"):
@@ -29,7 +29,7 @@ def test_navigation_feed_to_constructor(driver):
 
 
 @allure.feature("Навигация")
-@allure.story("Переход по клику на 'Лента заказов'")
+@allure.title("Переход по клику на 'Лента заказов'")
 def test_feed_navigation(driver):
     page = MainPage(driver)
     with allure.step("Кликнуть 'Лента заказов'"):
@@ -41,7 +41,7 @@ def test_feed_navigation(driver):
         assert driver.current_url == order_feed_page
 
 @allure.feature("Модальное окно ингредиента")
-@allure.story("Открытие")
+@allure.title("Открытие")
 def test_ingredient_modal_open(driver):
     page = MainPage(driver)
     with allure.step(f"Открыть модал ингредиента '{INGREDIENT_NAME}'"):
@@ -53,7 +53,7 @@ def test_ingredient_modal_open(driver):
         assert tittle == 'Детали ингредиента'
 
 @allure.feature("Модальное окно ингредиента")
-@allure.story("Закрытие модалки ингредиента")
+@allure.title("Закрытие модалки ингредиента")
 def test_ingredient_modal_close(driver):
     page = MainPage(driver)
     with allure.step(f"Открыть модал ингредиента '{INGREDIENT_NAME}'"):
@@ -68,14 +68,13 @@ def test_ingredient_modal_close(driver):
         assert page.wait_modal_closed()
 
 @allure.feature("Конструктор")
-@allure.story("Счетчик ингредиента увеличивается после добавления в заказ")
+@allure.title("Счетчик ингредиента увеличивается после добавления в заказ")
 def test_counter_increases_after_add(driver):
     page = MainPage(driver)
     with allure.step(f"Считать текущее значение счетчика для '{FIRST_INGREDIENT}'"):
         before = page.get_ingredient_counter(FIRST_INGREDIENT)
     with allure.step("Добавить ингредиент в конструктор"):
         page.put_ingredient_into_basket(FIRST_INGREDIENT)
-    time.sleep(1)
     with allure.step("Проверить, что счетчик увеличился"):
         after = page.get_ingredient_counter(FIRST_INGREDIENT)
         assert after > before, f"Ожидали увеличение счетчика: было {before}, стало {after}"
