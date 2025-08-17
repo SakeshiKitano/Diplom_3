@@ -1,6 +1,4 @@
 import allure
-import pytest
-import time
 
 from curl import order_feed_page, main_site
 from pages.main_page import MainPage

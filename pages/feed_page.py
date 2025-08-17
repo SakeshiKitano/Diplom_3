@@ -1,11 +1,9 @@
 import allure
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+
 from .base_page import BasePage
-from locators.main_page_locators import MainPageLocators as L
-from locators.details_window_locators import ModalLocators as M
 from locators.order_feed_locators import FeedPageLocators as F
 from locators.header_locators import HeaderLocators as H
-from locators.login_page_locators import AccountPageLocators as A
+
 
 class FeedPage(BasePage):
 
