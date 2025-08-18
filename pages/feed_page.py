@@ -27,7 +27,7 @@ class FeedPage(BasePage):
         self.wait_for_element(F.COUNTER_TODAY_VALUE)
         return int(self.get_text_on_element(F.COUNTER_TODAY_VALUE).replace(' ', ''))
 
-
+    @allure.step("Проверка отображения номера заказа в разделе 'В работе'")
     def is_order_number_in_progress(self, order_id):
         formatted_id = f"{int(order_id):07d}"  # Форматирование с ведущими нулями
         self.find_and_format_locator(F.COLUMN_IN_PROGRESS_NUMBERS, formatted_id)

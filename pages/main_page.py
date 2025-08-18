@@ -28,11 +28,7 @@ class MainPage(BasePage):
     def open_ingredient_modal(self, name):
         locator = L.INGREDIENT_CARD_BY_NAME(name)
         element = self.wait_for_clickable(locator)  # ждем, пока элемент станет кликабельным
-        try:
-            element.click()
-        except:
-            # fallback через JS
-            self.driver.execute_script("arguments[0].click();", element)
+        self.try_click_element(element)
 
     @allure.step("Закрыть модальное окно ингредиента")
     def close_modal(self):
@@ -57,11 +53,8 @@ class MainPage(BasePage):
         except Exception:
             return 0
 
-
-
     @allure.step('Перетащить элемент в корзину')
     def put_ingredient_into_basket(self, name):
-        #self.main_page_loading_wait()
         ingredient = self.find_element_with_wait(locator=L.INGREDIENT_CARD_BY_NAME(name))
         basket = self.find_element_with_wait(locator=L.CONSTRUCTOR_DROP_AREA)
         self.drag_and_drop_element(source=ingredient, target=basket)

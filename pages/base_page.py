@@ -24,7 +24,6 @@ class BasePage:
     def scroll_to_element(self, locator, timeout=10):
         element = self.wait_for_element(locator, timeout)
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
-        #self.driver.execute_script("arguments[0].click();", element)
 
     @allure.step("Кликнуть на элемент")
     def click_on_element(self, locator, timeout=10):
@@ -79,14 +78,20 @@ class BasePage:
         )
         return self.find_element_with_wait(locator)
 
-
+    @allure.step('Форматируем локатор с подстановкой динамического числа {num}')
     def format_locator(self, locator, num):
         method, locator_str = locator
         locator_str = locator_str.format(num)
         return method, locator_str
 
-
+    @allure.step('Находим элемент с динамическим локатором {dynamic_value}')
     def find_and_format_locator(self, locator, dynamic_value):
         formatted_locator = self.format_locator(locator, dynamic_value)
         return self.find_element_with_wait(formatted_locator)
 
+    @allure.step('Пытаемся кликнуть по элементу, fallback через JS если не удаётся')
+    def try_click_element(self, element):
+        try:
+            element.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", element)
